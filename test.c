@@ -16,7 +16,7 @@ struct Data {
     int contadorB;
     pthread_mutex_t mutexA;
 	pthread_mutex_t mutexB;
-}
+};
 
 void *TareaA(void* arg) {
     struct Data *data = arg;
