@@ -49,15 +49,15 @@ void* taskA(void* arg) {
 
         pthread_mutex_lock(&data->mutex);
 
-        int new_temp = rand() % (MAX_TEMP+1 - MIN_TEMP) + MIN_TEMP
+        int new_temp = rand() % (MAX_TEMP+1 - MIN_TEMP) + MIN_TEMP;
         printf("[A] - La nueva temperatura es %d.\n", new_temp);
 
         data->energy_param = (CONFORT_TEMP - new_temp) * ENERGY_PARAM_CONSTANT;
         
         pthread_mutex_unlock(&data->mutex);
 
-        next.tv_sec += periodo.tv_sec;
-		next.tv_nsec += periodo.tv_nsec;
+        next.tv_sec += period.tv_sec;
+		next.tv_nsec += period.tv_nsec;
 
 		next.tv_sec += next.tv_nsec / 1000000000;
 		next.tv_nsec = next.tv_nsec % 1000000000;
