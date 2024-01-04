@@ -95,7 +95,7 @@ void* taskB(void* arg) {
 }
 
 void* taskC(void* arg) {
-    struct Data* data;
+    struct Data* data = arg;
 
     struct timespec period;
     struct timespec next;
