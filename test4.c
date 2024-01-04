@@ -168,7 +168,7 @@ int main() {
     pthread_create(&threadC, &attr, taskC, &data);
 
     //Run threads
-    pthread_join(threadA, NULL);
+    //pthread_join(threadA, NULL);
     pthread_join(threadB, NULL);
     pthread_join(threadC, NULL);
 
