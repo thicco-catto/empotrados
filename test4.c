@@ -1,23 +1,23 @@
 #include <sys/mman.h>
 #include <sys/time.h>
-#include <sys/types.h>
 #include <signal.h>
 #include <time.h>
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
 #include <pthread.h>
-#include <sched.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
+#include <sched.h>
+#include <math.h>
 
 #define ENERGY_PARAM_PERIOD 1
-#define ENERGY_PARAM_PRIORITY 20
+#define ENERGY_PARAM_PRIORITY 10
 
 #define AC_PERIOD 4
-#define AC_PRIORITY 15
+#define AC_PRIORITY 9
 
 #define MONITOR_PERIOD 4
-#define MONITOR_PRIORITY 10
+#define MONITOR_PRIORITY 8
 
 #define POLICY SCHED_OTHER
 #define MIN_TEMP 20
@@ -57,16 +57,11 @@ void* taskA(void* arg) {
         
         pthread_mutex_unlock(&data->mutex);
 
-        printf("a\n");
         next.tv_sec += period.tv_sec;
-        printf("b\n");
 		next.tv_nsec += period.tv_nsec;
 
-        printf("c\n");
 		next.tv_sec += next.tv_nsec / 1000000000;
-        printf("d\n");
 		next.tv_nsec = next.tv_nsec % 1000000000;
-        printf("e\n");
     }
 }
 
@@ -174,12 +169,12 @@ int main() {
 
     //Run threads
     pthread_join(threadA, NULL);
-    // pthread_join(threadB, NULL);
-    // pthread_join(threadC, NULL);
+    pthread_join(threadB, NULL);
+    pthread_join(threadC, NULL);
 
     //Destroy stuff
     pthread_attr_destroy(&attr);
-    pthread_mutex_destroy(&data.mutex);
+	pthread_mutex_destroy(&data.mutex);
 
     return 0;
 }
