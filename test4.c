@@ -163,14 +163,14 @@ int main() {
     // pthread_attr_setschedparam(&attr, &param);
     // pthread_create(&threadB, &attr, taskB, &data);
 
-    param.sched_priority = MONITOR_PRIORITY;
-    pthread_attr_setschedparam(&attr, &param);
-    pthread_create(&threadC, &attr, taskC, &data);
+    // param.sched_priority = MONITOR_PRIORITY;
+    // pthread_attr_setschedparam(&attr, &param);
+    // pthread_create(&threadC, &attr, taskC, &data);
 
     //Run threads
     //pthread_join(threadA, NULL);
     //pthread_join(threadB, NULL);
-    pthread_join(threadC, NULL);
+    //pthread_join(threadC, NULL);
 
     //Destroy stuff
     pthread_attr_destroy(&attr);
