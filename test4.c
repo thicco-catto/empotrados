@@ -142,8 +142,6 @@ int main() {
 
     srand(time(NULL));    
 
-    pthread_mutex_destroy(&data.mutex, NULL);
-
     //Init threads
     pthread_t threadA, threadB, threadC;
     pthread_attr_t attr;
