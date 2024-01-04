@@ -80,7 +80,7 @@ void *TareaB(void* arg) {
     timerspec.it_value.tv_sec = PERIODO_B;
     timerspec.it_value.tv_nsec = 0;
 
-    timer_create(CLOCK_MONOTONIC, &sigev, &timer)
+    timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
         timer_settime(timer, 0, &timerspec, NULL);
