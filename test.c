@@ -18,35 +18,34 @@ struct Data {
 	pthread_mutex_t mutexB;
 };
 
-void *TareaA(void* arg) {
-    struct Data *data = arg;
-    sigset_t sigset;
-    struct sigevent sgev;
+void *TareaA(void* arg){
+	struct Data *data = arg;
+	sigset_t sigset;
+	struct sigevent sgev;
 	struct itimerspec its;
 	timer_t timer;
 	int signum;
 
-    sgev.sigev_notify = SIGEV_SIGNAL;
-    sgev.signo = SIGRTMIN + 1;
+	sgev.sigev_notify = SIGEV_SIGNAL;
+	sgev.sigev_signo = SIGRTMIN+1;
 
-    its.it_interval.tv_sec = PERIODO_A;
+	its.it_interval.tv_sec = PER_A;
 	its.it_interval.tv_nsec = 0;
-	its.it_value.tv_sec = PERIODO_A;
+	its.it_value.tv_sec = PER_A;
 	its.it_value.tv_nsec = 0;
 
-    sigemptyset(&sigset);
+	sigemptyset(&sigset);
 	sigaddset(&sigset, SIGRTMIN+1); // TIMER A
 
-    timer_create(CLOCK_MONOTONIC, &sgev, &timer);
+	timer_create(CLOCK_MONOTONIC, &sgev, &timer);
+	while(1){
+		timer_settime(timer, 0, &its, NULL);
 
-    while(1) {
-        timer_settime(timer, 0, &its, NULL);
+		sigwait(&sigset, &signum);
 
-        sigwait(&sigset, &signum);
+		pthread_mutex_lock(&data->mutexA);
 
-        pthread_mutex_lock(&data->mutexA);
-
-		data->contadorA += INCREMENTO_A;
+		data->contadorA += AV_A;
 		printf("TAREA A: CONTADOR = %d \n", data->contadorA);
 
 		if(data->contadorA % 10 == 0){
@@ -54,9 +53,10 @@ void *TareaA(void* arg) {
 		}
 
 		pthread_mutex_unlock(&data->mutexA);
-    }
 
-    return NULL;
+	}
+
+	return NULL;
 }
 
 void *TareaB(void* arg) {
