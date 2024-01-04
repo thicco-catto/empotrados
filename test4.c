@@ -20,8 +20,8 @@
 #define MONITOR_PRIORITY 10
 
 #define POLICY SCHED_OTHER
-#define MIN_TEMP 20.0
-#define MAX_TEMP 25.0
+#define MIN_TEMP 20
+#define MAX_TEMP 25
 #define ENERGY_PARAM_CONSTANT 2.5
 #define CONFORT_TEMP 22.0
 #define ENERGY_COST 10.0
