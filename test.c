@@ -1,10 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <signal.h>
-#include <time.h>
 #include <sys/mman.h>
 #include <sys/time.h>
+#include <signal.h>
+#include <time.h>
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define PERIODO_A 1
 #define PERIODO_B 2
