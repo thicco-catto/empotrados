@@ -59,7 +59,7 @@ void* taskA(void* arg) {
 
         printf("a\n");
         next.tv_sec += period.tv_sec;
-        printf("b\n")
+        printf("b\n");
 		next.tv_nsec += period.tv_nsec;
 
         printf("c\n");
