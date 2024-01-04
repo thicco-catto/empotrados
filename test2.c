@@ -27,6 +27,7 @@ struct Data {
 };
 
 void* TareaA(void* args) {
+    printf("Hey\n");
     //Get data
     struct Data* data = args;
 
