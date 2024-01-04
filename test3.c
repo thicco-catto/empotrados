@@ -162,8 +162,8 @@ int main() {
     data.counterA = 0;
     data.counterB = 0;
 
-    pthread_mutex_create(&data.mutexA, NULL);
-    pthread_mutex_create(&data.mutexB, NULL);
+    pthread_mutex_init(&data.mutexA, NULL);
+    pthread_mutex_init(&data.mutexB, NULL);
 
     //Init signals
     sigset_t sigset;
