@@ -49,7 +49,6 @@ void *TareaA(void* arg){
 		printf("TAREA A: CONTADOR = %d \n", data->contadorA);
 
 		if(data->contadorA % 10 == 0){
-            printf("TAREA A: Llamando a C\n");
 			kill(getpid(), SIGRTMIN+3);
 		}
 
@@ -94,7 +93,6 @@ void *TareaB(void* arg) {
         printf("TAREA B: CONTADOR = %d \n", data->contadorB);
 
         if(data->contadorB % 5 == 0) {
-            printf("TAREA B: Llamando a C\n");
             kill(getpid(), SIGRTMIN+4);
         }
 
@@ -111,20 +109,20 @@ void *TareaC(void* arg) {
     int signum;
 
     sigemptyset(&sigset);
-    sigaddset(&sigset, SIGRTMIN+3);
-    sigaddset(&sigset, SIGRTMIN+4);
+	sigaddset(&sigset, SIGRTMIN+3); // A -> C
+	sigaddset(&sigset, SIGRTMIN+4); // B -> C
 
     while(1) {
         sigwait(&sigset, &signum);
 
         pthread_mutex_lock(&data->mutexA);
-        pthread_mutex_lock(&data->mutexB);
+		pthread_mutex_lock(&data->mutexB);
 
-        if(signum == 3) {
+        if(signum == SIGRTMIN+3) {
             printf("TAREA C: El contador A es multiplo de 10.\n");
         }
 
-        if(signum == 4) {
+        if(signum == SIGRTMIN+4) {
             printf("TAREA C: El contador B es multiplo de 5.\n");
         }
 
