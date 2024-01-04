@@ -155,7 +155,7 @@ int main(){
 
 	pthread_attr_init(&attr);
 	pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
-	pthread_attr_setschedpolicy(&attr, SCHED_FIFO);
+	pthread_attr_setschedpolicy(&attr, SCHED_OTHER);
 
 	param.sched_priority = PRIO_A;
 	pthread_attr_setschedparam(&attr, &param);
