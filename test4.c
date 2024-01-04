@@ -169,8 +169,8 @@ int main() {
 
     //Run threads
     pthread_join(threadA, NULL);
-    pthread_join(threadB, NULL);
-    pthread_join(threadC, NULL);
+    // pthread_join(threadB, NULL);
+    // pthread_join(threadC, NULL);
 
     //Destroy stuff
     pthread_attr_destroy(&attr);
