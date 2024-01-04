@@ -29,9 +29,9 @@ void *TareaA(void* arg){
 	sgev.sigev_notify = SIGEV_SIGNAL;
 	sgev.sigev_signo = SIGRTMIN+1;
 
-	its.it_interval.tv_sec = PER_A;
+	its.it_interval.tv_sec = PERIODO_A;
 	its.it_interval.tv_nsec = 0;
-	its.it_value.tv_sec = PER_A;
+	its.it_value.tv_sec = PERIODO_A;
 	its.it_value.tv_nsec = 0;
 
 	sigemptyset(&sigset);
@@ -45,7 +45,7 @@ void *TareaA(void* arg){
 
 		pthread_mutex_lock(&data->mutexA);
 
-		data->contadorA += AV_A;
+		data->contadorA += INCREMENTO_A;
 		printf("TAREA A: CONTADOR = %d \n", data->contadorA);
 
 		if(data->contadorA % 10 == 0){
