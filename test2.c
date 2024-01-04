@@ -53,8 +53,7 @@ void* TareaA(void* args) {
     timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
-        printf("Hey\n");
-        timer_settime(&timer, 0, &timerspec, NULL);
+        timer_settime(timer, 0, &timerspec, NULL);
 
         sigwait(&sigset, &signum);
 
@@ -101,7 +100,7 @@ void* TareaB(void* args) {
     timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
-        timer_settime(&timer, 0, &timerspec, NULL);
+        timer_settime(timer, 0, &timerspec, NULL);
 
         sigwait(&sigset, &signum);
 
