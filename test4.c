@@ -19,7 +19,7 @@
 #define MONITOR_PERIOD 4
 #define MONITOR_PRIORITY 10
 
-#define POLICY SCHED_OTHER
+#define POLICY SCHED_FIFO
 #define MIN_TEMP 20
 #define MAX_TEMP 25
 #define ENERGY_PARAM_CONSTANT 2.5
@@ -169,8 +169,8 @@ int main() {
 
     //Run threads
     pthread_join(threadA, NULL);
-    pthread_join(threadB, NULL);
-    pthread_join(threadC, NULL);
+    // pthread_join(threadB, NULL);
+    // pthread_join(threadC, NULL);
 
     //Destroy stuff
     pthread_attr_destroy(&attr);
