@@ -36,6 +36,7 @@ struct Data {
 void* taskA(void* arg) {
     struct Data* data = arg;
 
+    float new_temp;
     struct timespec period;
     struct timespec next;
 
@@ -49,7 +50,7 @@ void* taskA(void* arg) {
 
         pthread_mutex_lock(&data->mutex);
 
-        int new_temp = rand() % (MAX_TEMP+1 - MIN_TEMP) + MIN_TEMP;
+        new_temp = rand() % (MAX_TEMP+1 - MIN_TEMP) + MIN_TEMP;
         printf("[A] - La nueva temperatura es %d.\n", new_temp);
 
         data->energy_param = (CONFORT_TEMP - new_temp) * ENERGY_PARAM_CONSTANT;
