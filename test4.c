@@ -115,7 +115,7 @@ void* taskC(void* arg) {
         } else {
             printf("[C] - Heat activated.");
         }
-        printf("[C] - Cost of last action is %f.", data->cold_activate);
+        printf("[C] - Cost of last action is %f.", data->cost);
 
         pthread_mutex_unlock(&data->mutex);
 
