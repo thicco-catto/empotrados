@@ -67,7 +67,7 @@ void *TareaB(void* arg) {
     int signum;
 
     sigev.sigev_notify = SIGEV_SIGNAL;
-    sigev.signo = SIGRTMIN+2;
+    sigev.sigev_signo = SIGRTMIN+2;
 
     sigemptyset(&sigset);
     sigaddset(&sigset, SIGRTMIN+2);
