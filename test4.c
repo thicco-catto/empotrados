@@ -55,7 +55,9 @@ void* taskA(void* arg) {
 
         data->energy_param = (CONFORT_TEMP - new_temp) * ENERGY_PARAM_CONSTANT;
         
+        printf("before mutex\n");
         pthread_mutex_unlock(&data->mutex);
+        printf("after mutex\n");
 
         next.tv_sec += period.tv_sec;
 		next.tv_nsec += period.tv_nsec;
