@@ -49,6 +49,7 @@ void *TareaA(void* arg){
 		printf("TAREA A: CONTADOR = %d \n", data->contadorA);
 
 		if(data->contadorA % 10 == 0){
+            printf("TAREA A: Llamando a C\n");
 			kill(getpid(), SIGRTMIN+3);
 		}
 
@@ -93,6 +94,7 @@ void *TareaB(void* arg) {
         printf("TAREA B: CONTADOR = %d \n", data->contadorB);
 
         if(data->contadorB % 5) {
+            printf("TAREA B: Llamando a C\n");
             kill(getpid(), SIGRTMIN+4);
         }
 
