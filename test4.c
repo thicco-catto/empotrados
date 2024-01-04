@@ -78,12 +78,12 @@ void* taskB(void* arg) {
     while(1) {
         clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
 
-        pthread_mutex_lock(&data.mutex);
+        pthread_mutex_lock(&data->mutex);
 
         data->cold_activate = data->energy_param < 0;
         data->cost = fabs(data->energy_param) * ENERGY_COST;
 
-        pthread_mutex_unlock(&data.mutex);
+        pthread_mutex_unlock(&data->mutex);
 
         next.tv_sec += period.tv_sec;
         next.tv_nsec += period.tv_nsec;
