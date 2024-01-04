@@ -55,7 +55,7 @@ void* TareaA(void* args) {
     while(1) {
         timer_settime(&timer, 0, &timerspec, NULL);
 
-        sigwait(&sigset, &sigset);
+        sigwait(&sigset, &signum);
 
         pthread_mutex_lock(&data->mutexA);
 
