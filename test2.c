@@ -27,7 +27,6 @@ struct Data {
 };
 
 void* TareaA(void* args) {
-    printf("Hey\n");
     //Get data
     struct Data* data = args;
 
@@ -54,6 +53,7 @@ void* TareaA(void* args) {
     timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
+        printf("Hey\n");
         timer_settime(&timer, 0, &timerspec, NULL);
 
         sigwait(&sigset, &signum);
