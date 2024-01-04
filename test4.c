@@ -51,7 +51,7 @@ void* taskA(void* arg) {
         pthread_mutex_lock(&data->mutex);
 
         new_temp = rand() % (MAX_TEMP+1 - MIN_TEMP) + MIN_TEMP;
-        printf("[A] - La nueva temperatura es %f.\n", new_temp);
+        printf("[A] - Current temperature is %f.\n", new_temp);
 
         data->energy_param = (CONFORT_TEMP - new_temp) * ENERGY_PARAM_CONSTANT;
         
@@ -95,7 +95,7 @@ void* taskB(void* arg) {
 }
 
 void* taskC(void* arg) {
-    struct Data* data = arg;
+    struct Data* data;
 
     struct timespec period;
     struct timespec next;
@@ -110,13 +110,13 @@ void* taskC(void* arg) {
 
         pthread_mutex_lock(&data->mutex);
 
-        printf("[C] - Energy parameter is %f.", data->energy_param);
+        printf("[C] - Energy parameter is %f.\n", data->energy_param);
         if(data->cold_activate) {
-            printf("[C] - Cold activated.");
+            printf("[C] - Cold activated.\n");
         } else {
-            printf("[C] - Heat activated.");
+            printf("[C] - Heat activated.\n");
         }
-        printf("[C] - Cost of last action is %f.", data->cost);
+        printf("[C] - Cost of last action is %f.\n", data->cost);
 
         pthread_mutex_unlock(&data->mutex);
 
