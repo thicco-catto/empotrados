@@ -53,7 +53,7 @@ void* taskA(void* arg) {
     timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
-        timer_settime(&timer, 0, &timerspec, NULL);
+        timer_settime(timer, 0, &timerspec, NULL);
 
         sigwait(&sigset, &signum);
 
@@ -100,7 +100,7 @@ void* taskB(void* arg) {
     timer_create(CLOCK_MONOTONIC, &sigev, &timer);
 
     while(1) {
-        timer_settime(&timer, 0, &timerspec, NULL);
+        timer_settime(timer, 0, &timerspec, NULL);
 
         sigwait(&sigset, &signum);
 
@@ -174,14 +174,14 @@ int main() {
     sigaddset(&sigset, SIGNAL_A_CALL_C);
     sigaddset(&sigset, SIGNAL_B_CALL_C);
 
+    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
+
     //Init threads
     pthread_t threadA, threadB, threadC;
 
     pthread_create(&threadA, NULL, taskA, &data);
     pthread_create(&threadB, NULL, taskB, &data);
     pthread_create(&threadC, NULL, taskC, &data);
-
-    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
     pthread_join(threadA, NULL);
     pthread_join(threadB, NULL);
