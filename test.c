@@ -93,7 +93,7 @@ void *TareaB(void* arg) {
         data->contadorB += INCREMENTO_B;
         printf("TAREA B: CONTADOR = %d \n", data->contadorB);
 
-        if(data->contadorB % 5) {
+        if(data->contadorB % 5 == 0) {
             printf("TAREA B: Llamando a C\n");
             kill(getpid(), SIGRTMIN+4);
         }
