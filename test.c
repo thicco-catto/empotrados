@@ -44,16 +44,16 @@ void *TareaA(void* arg) {
 
         sigwait(&sigset, &signum);
 
-        pthread_mutex_lock(data->mutexA);
+        pthread_mutex_lock(&data->mutexA);
 
 		data->contadorA += INCREMENTO_A;
 		printf("TAREA A: CONTADOR = %d \n", data->contadorA);
 
-		if(contadorA % 10 == 0){
+		if(data->contadorA % 10 == 0){
 			kill(getpid(), SIGRTMIN+3);
 		}
 
-		pthread_mutex_unlock(data->mutexA);
+		pthread_mutex_unlock(&data->mutexA);
     }
 
     return NULL;
