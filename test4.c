@@ -89,7 +89,7 @@ void* taskB(void* arg) {
         next.tv_sec += period.tv_sec;
         next.tv_nsec += period.tv_nsec;
 
-        next.tv_sec = next.tv_nsec / 1000000000;
+        next.tv_sec += next.tv_nsec / 1000000000;
         next.tv_nsec = next.tv_nsec % 1000000000;
     }
 }
@@ -123,7 +123,7 @@ void* taskC(void* arg) {
         next.tv_sec += period.tv_sec;
         next.tv_nsec += period.tv_nsec;
 
-        next.tv_sec = next.tv_nsec / 1000000000;
+        next.tv_sec += next.tv_nsec / 1000000000;
         next.tv_nsec = next.tv_nsec % 1000000000;
     }
 }
