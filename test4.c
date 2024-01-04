@@ -155,9 +155,9 @@ int main() {
     pthread_attr_setschedpolicy(&attr, POLICY);
 
     //Create threads
-    param.sched_priority = ENERGY_PARAM_PRIORITY;
-    pthread_attr_setschedparam(&attr, &param);
-    pthread_create(&threadA, &attr, taskA, &data);
+    // param.sched_priority = ENERGY_PARAM_PRIORITY;
+    // pthread_attr_setschedparam(&attr, &param);
+    // pthread_create(&threadA, &attr, taskA, &data);
 
     param.sched_priority = AC_PRIORITY;
     pthread_attr_setschedparam(&attr, &param);
